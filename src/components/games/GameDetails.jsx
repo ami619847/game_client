@@ -5,7 +5,7 @@ import {getGames, joinGame, updateGame} from '../../actions/games'
 import {getUsers} from '../../actions/users'
 import {userId} from '../../jwt'
 import Paper from 'material-ui/Paper'
-import Board from './Board'
+//import Board from './Board'
 import './GameDetails.css'
 
 class GameDetails extends PureComponent {
@@ -19,17 +19,25 @@ class GameDetails extends PureComponent {
 
   joinGame = () => this.props.joinGame(this.props.game.id)
 
-  makeMove = (toRow, toCell) => {
-    const {game, updateGame} = this.props
+  makeAttack = () => {
+  // = (attacker, defender) {
+      const { game, updateGame } = this.props
 
-    const board = game.board.map(
-      (row, rowIndex) => row.map((cell, cellIndex) => {
-        if (rowIndex === toRow && cellIndex === toCell) return game.turn
-        else return cell
-      })
-    )
-    updateGame(game.id, board)
+    // defender.health = defender.health - attacker.attack
+    updateGame (game.id) 
   }
+
+  // makeMove = (toRow, toCell) => {
+  //   const {game, updateGame} = this.props
+
+  //   const board = game.board.map(
+  //     (row, rowIndex) => row.map((cell, cellIndex) => {
+  //       if (rowIndex === toRow && cellIndex === toCell) return game.turn
+  //       else return cell
+  //     })
+  //   )
+  //   updateGame(game.id, board)
+  // }
 
 
 
@@ -44,6 +52,7 @@ class GameDetails extends PureComponent {
     if (!game) return 'Not found'
 
     const player = game.players.find(p => p.userId === userId)
+    const otherPlayer = game.players.find(o => o.userId !== userId)
 
     const winner = game.players
       .filter(p => p.symbol === game.winner)
@@ -73,10 +82,18 @@ class GameDetails extends PureComponent {
 
       <hr />
 
-      {
-        game.status !== 'pending' &&
-        <Board board={game.board} makeMove={this.makeMove} />
-      }
+      <button
+        className="button"
+        // disabled={hasTurn}
+        onClick={ this.makeAttack }
+      >ATTACK = 15</button>
+
+      {/* {
+        otherPlayer.health = otherPlayer.health - player.attack && */}
+        <p>Health of other player: {otherPlayer.health}</p> 
+        <p>Health: {player.health}</p>
+      {/* } */}
+
     </Paper>)
   }
 }

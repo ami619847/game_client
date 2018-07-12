@@ -9,7 +9,7 @@ import './GameDetails.css'
 
 class GameDetails extends PureComponent {
 
-  componentWillMount() {
+  componentDidMount() {
     if (this.props.authenticated) {
       if (this.props.game === null) this.props.getGames()
       if (this.props.users === null) this.props.getUsers()
@@ -19,8 +19,10 @@ class GameDetails extends PureComponent {
   joinGame = () => this.props.joinGame(this.props.game.id)
 
   charge = () => {
+    const damage=1
+    console.log("look Im running", damage)
     const {game, updateGame} = this.props
-    updateGame(game.id)
+    updateGame(game.id, damage)
   }
 
 
@@ -64,11 +66,16 @@ class GameDetails extends PureComponent {
       }
 
       <hr />
-      {this.props.game.players.map((player)=><div>{player.health}</div>)}
-    
       {
         game.status === 'started' &&
-       <button onClick={this.charge}> attack</button>
+      
+      this.props.game.players.map((player)=><div>user:{player.userId} health{player.health}</div>)}
+    
+      {
+        game.status === 'started' &&<div>
+          
+       <button onClick={this.charge()}> attack</button>
+       </div>
       }
     </Paper>)
   }

@@ -24,36 +24,35 @@ class GameDetails extends PureComponent {
   //   updateGame(game.id)
   // }
 
-  makeMove = (toRow, toCell) => {
-    const {game, updateGame} = this.props
+  // makeMove = (toRow, toCell) => {
+  //   const {game, updateGame} = this.props
 
-    const board = game.board.map(
-      (row, rowIndex) => row.map((cell, cellIndex) => {
-        if (rowIndex === toRow && cellIndex === toCell) return game.turn
-        else return cell
-      })
-    )
-    updateGame(game.id, board)
-  }
+  //   const board = game.board.map(
+  //     (row, rowIndex) => row.map((cell, cellIndex) => {
+  //       if (rowIndex === toRow && cellIndex === toCell) return game.turn
+  //       else return cell
+  //     })
+  //   )
+  //   updateGame(game.id, board)
+  // }
 
   makeAttack = (symbol) => {
     const {game, updateGame} = this.props
 
-    const playerA = game.board[0];
-    const playerB = game.board[1];
+    const player1 = game.board[0];
+    const player2 = game.board[1];
 
     const board = game.board
 
-    console.log(board);
+    //console.log(board);
 
-    if (symbol === playerA[0]) {
-        board[1][2] = board[1][2] - playerA[1];
+    if (symbol === player1[0]) {
+        board[1][2] = board[1][2] - player1[1];
     }
-    else if (symbol === playerB[0]){
-      board[0][2] = board[0][2] - playerB[1];
+    else if (symbol === player2[0]){
+      board[0][2] = board[0][2] - player2[1];
     }
-    
-    console.log(board);
+    // console.log(board);
 
     updateGame(game.id, board)
   }

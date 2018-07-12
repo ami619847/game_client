@@ -67,7 +67,7 @@ class GameDetails extends PureComponent {
       {this.props.game.players.map((player)=><div>{player.health}</div>)}
     
       {
-        game.status !== 'pending' &&
+        game.status === 'started' &&
        <button onClick={this.charge}> attack</button>
       }
     </Paper>)

@@ -5,6 +5,7 @@ import {getGames, joinGame, updateGame} from '../../actions/games'
 import {getUsers} from '../../actions/users'
 import {userId} from '../../jwt'
 import Paper from 'material-ui/Paper'
+import Board from './Board'
 import './GameDetails.css'
 
 class GameDetails extends PureComponent {
@@ -18,12 +19,19 @@ class GameDetails extends PureComponent {
 
   joinGame = () => this.props.joinGame(this.props.game.id)
 
-  charge = () => {
+  makeMove = (toRow, toCell) => {
     const {game, updateGame} = this.props
-    updateGame(game.id)
+
+    // console.log(game.board[toRow][toCell])
+    // console.log(game)
+  
+    updateGame(game.id, {attackDamage : game.board[toRow][toCell]})
   }
-
-
+    
+  // charge = () => {
+  //   const {game, updateGame} = this.props
+  //   updateGame(game.id)
+  // }
 
   render() {
     const {game, users, authenticated, userId} = this.props
@@ -64,11 +72,16 @@ class GameDetails extends PureComponent {
       }
 
       <hr />
-      {this.props.game.players.map((player)=><div>{player.health}</div>)}
+      {this.props.game.players.map((player) => 
+        <div>
+          {player.health}
+        </div>)
+        } 
     
       {
         game.status === 'started' &&
-       <button onClick={this.charge}> attack</button>
+      //  <button onClick={this.charge}> attack</button>
+       <Board board={game.board} makeMove={this.makeMove} />
       }
     </Paper>)
   }

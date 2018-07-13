@@ -8,6 +8,7 @@ import Paper from 'material-ui/Paper'
 import Board from './Board'
 import './GameDetails.css'
 import Players from '../../images/front.png'
+import theend from '../../images/tenor.gif'
 
 class GameDetails extends PureComponent {
 
@@ -98,6 +99,9 @@ class GameDetails extends PureComponent {
        <div className='styleBoard'>
        <Board board={game.board} makeMove={this.makeMove} />
       </div>}
+      {
+        game.status === 'finished' &&<div>
+      <img className='theend' src={theend} /> </div>}
     </Paper>)
   }
 }

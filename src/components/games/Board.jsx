@@ -1,5 +1,6 @@
 import React from 'react'
-import './Board.css'
+import './Board.css';
+import Fistbutton from '../../images/fist-button.png';
 
 const renderCel = (makeMove, rowIndex, cellIndex, number, hasTurn) => {
   return (
@@ -8,7 +9,7 @@ const renderCel = (makeMove, rowIndex, cellIndex, number, hasTurn) => {
       disabled={hasTurn}
       onClick={() => makeMove(rowIndex, cellIndex)}
       key={`${rowIndex}-${cellIndex}`}
-    >{'-' || number}</button>
+    >{<img src={Fistbutton}/> || number}</button>
   )
 }
 

@@ -1,5 +1,16 @@
+Board {
+ align-content: center;
+ margin: auto;
+}
+
 .board-tile {
     height: 50px;
     width: 50px;
+    background-color: white;
+    margin: 3px;
   }
   
+img {
+  height: 40px;
+  width: 40px;
+}

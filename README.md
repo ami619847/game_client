@@ -1,5 +1,13 @@
-# Tic Tac Toe front end
+# FightClub Game Server
 
-This is the frontend for the game starter in which you can play Tic Tac Toe with a friend. It's build using the standard `create-react-app` so the usual `yarn start` can be used.
+It was a group of 2 developers project. 
+
+This is the frontend for the game starter in which you can play FightClub game with a friend. It's build using the standard React, Redux and Maerial UI.
 
 The backend (server) of this project must be running for the app to function correctly.
+
+## Running
+
+* Download the app
+* Install the dependencies using `yarn install`
+* `yarn start` 
